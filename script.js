@@ -1,11 +1,16 @@
 "use strict";
 
 {
+
     const timeDisplay = document.querySelector(".time-display");
+    const timePeriod = document.querySelector(".time-period");
     let countDown;
     let breakRan = false;
+    const standardWorkPeriod = 1500; // 25 min
 
     function timer(seconds) {
+        clearInterval(countDown);
+
         const now = Date.now();
         const then = now + (seconds * 1000); // Convert seconds to milliseconds then add
         displayTimeLeft(seconds);
@@ -15,17 +20,22 @@
 
             if (secondsLeft < 0 && breakRan === false) {
                 clearInterval(countDown);
-                timer(300) // Set for five min pomodoro break
+                timer(300) // Set for 5 min pomodoro break
+
+                timePeriod.textContent = "Take a break :)"
                 breakRan = true;
+
                 return;
             } else if (secondsLeft < 0 && breakRan === true) {
                 clearInterval(countDown);
-                timer(1500);
+                timer(standardWorkPeriod);
+
+                timePeriod.textContent = "Work period";
                 breakRan = false;
+
                 return;
             }
 
-            // Display time
             displayTimeLeft(secondsLeft);
 
         }, 1000);
@@ -42,9 +52,6 @@
         document.title = displayTime; // Display on tab
     }
 
-    timer(1500); // Start pomodoro work for 25min
-    document.pomoForm.addEventListener("submit", (event) => {
-        event.preventDefault();
-        
-    });
+    timer(standardWorkPeriod);
+    
 }
