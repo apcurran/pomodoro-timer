@@ -25,18 +25,15 @@ button {
     flex-direction: column;
 }
 
-.main > * {
-    margin-top: .75rem;
-    margin-bottom: .75rem;
-}
-
 .title {
+    margin-bottom: 1.75rem;
     color: #3182ce;
 }
 
 .time-display {
     color: #2a4365;
     font-size: 2rem;
+    margin-bottom: .5rem;
 }
 
 .time-period {
